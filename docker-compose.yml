@@ -1,0 +1,20 @@
+version: "3.1"
+
+services:
+  uadegram:
+    container_name: uadegram
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - uadegram_db
+    volumes:
+      - .:/usr/src/api
+  uadegram_db:
+    container_name: uadegram_db
+    image: mongo
+    ports:
+      - "27018:27017"
+    logging:
+      driver: none
