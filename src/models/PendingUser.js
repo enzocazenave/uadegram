@@ -6,12 +6,11 @@ const PendingUserSchema = Schema({
         required: true
     },
     otp: {
-        type: Number,
+        type: String,
         required: true
     }
 });
 
-PendingUserSchema.path('otp').validate((value) => value > 99999 && value < 1000000, 'Invalid otp code');
 PendingUserSchema.path('email').validate((value) => value.endsWith('@uade.edu.ar'), 'Email dont ends with domain: @uade.edu.ar');
 
 module.exports = model('PendingUser', PendingUserSchema);

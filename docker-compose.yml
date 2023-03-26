@@ -1,20 +1,21 @@
-version: "3.1"
+version: "3"
 
 services:
-  uadegram:
+  api:
     container_name: uadegram
     restart: always
     build: .
     ports:
       - "3000:3000"
     links:
-      - uadegram_db
+      - mongo
     volumes:
       - .:/usr/src/api
-  uadegram_db:
+  mongo:
     container_name: uadegram_db
     image: mongo
     ports:
       - "27018:27017"
     logging:
       driver: none
+    command: mongod --quiet --logpath /dev/null 
