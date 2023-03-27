@@ -7,7 +7,7 @@ const User = require('../../models/User');
 
 const verifyOtp = async(req, res = response) => {
 
-    const { name, surname, email, password, otp } = req.body;
+    const { email, password, otp } = req.body;
 
     try {
         let user = await User.findOne({ email });
@@ -40,7 +40,7 @@ const verifyOtp = async(req, res = response) => {
 
         delete req.body.password;
 
-        const tokenPayload = { ...req.body, _id: user._id };
+        const tokenPayload = { ...req.body, profile_image: user.profile_image, _id: user._id };
         const token = sign(tokenPayload, process.env.SECRET_TOKEN_KEY, { expiresIn: process.env.SECRET_TOKEN_EXPIRATION_TIME });
         tokenPayload.token = token;
 

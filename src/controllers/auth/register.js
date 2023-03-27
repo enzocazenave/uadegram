@@ -3,9 +3,8 @@ const PendingUser = require('../../models/PendingUser');
 const User = require('../../models/User');
 const catchError = require('../../helpers/catchError');
 const generateOtpCode = require('../../helpers/generateOtpCode');
-const nodemailer = require('nodemailer');
-const configEmailSender = require('../../helpers/configEmailSender');
 const { genSaltSync, hashSync } = require('bcryptjs');
+const sendMail = require('../../helpers/sendEmail');
 
 const register = async(req, res = response) => {
     const { email } = req.body;
@@ -24,14 +23,11 @@ const register = async(req, res = response) => {
         });
 
         const generatedOtpCode = generateOtpCode();
-        const transport = nodemailer.createTransport(configEmailSender);
-
-        await transport.sendMail({
-            from: process.env.GMAIL_APP_EMAIL,
-            to: email,
-            subject: 'Uadegram - Código OTP de verificación',
-            text: `Código OTP: ${ generatedOtpCode }`
-        });
+        await sendMail(
+            email,
+            'Uadegram - Código OTP de verificación',
+            `Código OTP: ${ generatedOtpCode }`
+        );
 
         const salt = genSaltSync();
 

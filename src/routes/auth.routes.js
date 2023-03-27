@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { register, verifyOtp } = require('../controllers/auth/');
+const { register, verifyOtp, login } = require('../controllers/auth/');
 const { fieldValidator } = require('../middlewares/fieldValidator');
 
 const router = Router();
@@ -18,5 +18,11 @@ router.post('/verifyOtp', [
     check('otp', 'El código de verificación es obligatorio.').not().isEmpty(),
     fieldValidator
 ], verifyOtp);
+
+router.post('/login', [
+    check('email', 'El correo electrónico es obligatorio.').isEmail(),
+    check('password', 'La contraseña debe tener 6 o más caractéres').isLength({ min: 6 }),
+    fieldValidator
+], login);
 
 module.exports = router;
