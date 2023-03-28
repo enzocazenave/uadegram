@@ -6,7 +6,6 @@ const PendingUser = require('../../models/PendingUser');
 const User = require('../../models/User');
 
 const verifyOtp = async(req, res = response) => {
-
     const { email, password, otp } = req.body;
 
     try {

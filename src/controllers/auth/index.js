@@ -1,5 +1,6 @@
 module.exports = {
     register: require('./register'),
     verifyOtp: require('./verifyOtp'),
-    login: require('./login')
-}
+    login: require('./login'),
+    check: require('./check')
+};

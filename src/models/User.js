@@ -20,6 +20,10 @@ const UserSchema = Schema({
     profile_image: {
         type: String,
         default: 'https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg'
+    },
+    matches: {
+        type: Array,
+        default: []
     }
 });
 
