@@ -23,7 +23,6 @@ const noMatch = async(req, res = response) => {
 
         res.status(201).json({
             ok: true,
-            match: false
         });
     } catch(error) {
         catchError(res, error);
