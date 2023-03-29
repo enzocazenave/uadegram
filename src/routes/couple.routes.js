@@ -6,12 +6,13 @@ const { fieldValidator } = require('../middlewares/fieldValidator');
 const router = Router();
 
 // GUARDA EL USUARIO LIKEADO 
-router.post('/:id', [
+router.post('/match/:id', [
     check('userId', 'El identificador del usuario es obligatorio.').not().isEmpty()
 ], match);
 
-router.post('/no/:id', [
+// GUARDA EL USUARIO NO LIKEADO
+router.post('/nomatch/:id', [
     check('userId', 'El identificador del usuario es obligatorio.').not().isEmpty()
-], noMatch)
+], noMatch);
 
 module.exports = router;

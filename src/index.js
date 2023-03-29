@@ -18,7 +18,7 @@ expressServer.use(logger('dev'));
 //* DECLARED ROUTES *//
 expressServer.use('/api/auth', require('./routes/auth.routes'));
 expressServer.use('/api/user', require('./routes/user.routes'));
-expressServer.use('/api/match', require('./routes/match.routes'));
+expressServer.use('/api/couple', require('./routes/couple.routes'));
 //* ############### *//
 
 expressServer.listen(PORT_EXPRESS, () => {
