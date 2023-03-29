@@ -1,3 +1,4 @@
 module.exports = {
-    match: require('./match')
+    match: require('./match'),
+    noMatch: require('./noMatch')
 }

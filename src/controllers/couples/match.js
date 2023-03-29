@@ -27,7 +27,8 @@ const match = async(req, res = response) => {
         const isMatch = userMatch.matches.some(matchUser => matchUser === userId);
 
         if (!isMatch) return res.status(201).json({
-            ok: true
+            ok: true,
+            match: false
         });
 
         const match = new Match({
