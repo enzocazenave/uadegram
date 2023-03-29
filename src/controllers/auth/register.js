@@ -12,14 +12,14 @@ const register = async(req, res = response) => {
     try {
         let user = await User.findOne({ email });
 
-        if (user) return res.status(400).json({
-            ok: false,
-            msg: `El correo electrónico está en uso.`
-        });
-
         if (!email.endsWith('@uade.edu.ar')) return res.status(400).json({
             ok: false,
             msg: `El correo electrónico no pertenece a un alumno de UADE.`
+        });
+
+        if (user) return res.status(400).json({
+            ok: false,
+            msg: `El correo electrónico está en uso.`
         });
 
         const generatedOtpCode = generateOtpCode();
