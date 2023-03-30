@@ -2,7 +2,7 @@ version: "3"
 
 services:
   api:
-    container_name: uadegram
+    container_name: uademe
     restart: always
     build: .
     ports:
@@ -12,7 +12,7 @@ services:
     volumes:
       - .:/usr/src/api
   mongo:
-    container_name: uadegram_db
+    container_name: uademe_db
     image: mongo
     ports:
       - "27018:27017"

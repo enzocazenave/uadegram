@@ -1,3 +1,4 @@
 module.exports = {
-    getUser: require('./getUser')
+    getUser: require('./getUser'),
+    addImages: require('./addImages')
 };
