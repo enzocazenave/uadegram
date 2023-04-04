@@ -27,10 +27,12 @@ const UserSchema = Schema({
         type: Array,
         default: []
     },
+    // USARIOS MATCHEADOS
     matches: {
         type: Array,
         default: []
     },
+    // USUARIOS NO MATCHEADOS
     noMatches: {
         type: Array,
         default: []
