@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { match, noMatch } = require('../controllers/couples/');
+const { match, noMatch, getUsers } = require('../controllers/couples/');
 const { fieldValidator } = require('../middlewares/fieldValidator');
 
 const router = Router();
@@ -14,5 +14,7 @@ router.post('/match/:id', [
 router.post('/nomatch/:id', [
     check('userId', 'El identificador del usuario es obligatorio.').not().isEmpty()
 ], noMatch);
+
+router.get('/users/:gender', [], getUsers);
 
 module.exports = router;

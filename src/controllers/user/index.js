@@ -1,4 +1,5 @@
 module.exports = {
     getUser: require('./getUser'),
-    addImages: require('./addImages')
+    addImages: require('./addImages'),
+    answerQuestions: require('./answerQuestions')
 };

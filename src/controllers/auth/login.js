@@ -32,7 +32,9 @@ const login = async(req, res = response) => {
             email,
             name: user.name,
             surname: user.surname,
-            profile_image: user.profile_image
+            profile_image: user.profile_image,
+            career: user.career,
+            birthdate: user.birthdate
         }
         const token = sign(tokenPayload, process.env.SECRET_TOKEN_KEY, { expiresIn: process.env.SECRET_TOKEN_EXPIRATION_TIME });
         tokenPayload.token = token;

@@ -17,25 +17,41 @@ const UserSchema = Schema({
         type: String,
         required: true,
     },
-    // FOTO DE PERFIL PRINCIPAL
     profile_image: {
         type: String,
         default: 'https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg'
     },
-    // FOTOS DEL USUARIO
     profile_images: {
         type: Array,
         default: []
     },
-    // USARIOS MATCHEADOS
     matches: {
         type: Array,
         default: []
     },
-    // USUARIOS NO MATCHEADOS
     noMatches: {
         type: Array,
         default: []
+    },
+    about: {
+        type: String,
+        default: ''
+    },
+    birthdate: {
+        type: Date,
+        default: null
+    },
+    gender: {
+        type: Number,
+        default: -1
+    },
+    career: {
+        type: Number,
+        default: -1
+    },
+    isOnline: {
+        type: Boolean,
+        default: false
     }
 });
 

@@ -39,7 +39,7 @@ const verifyOtp = async(req, res = response) => {
 
         delete req.body.password;
 
-        const tokenPayload = { ...req.body, profile_image: user.profile_image, _id: user._id };
+        const tokenPayload = { ...req.body, profile_image: user.profile_image, _id: user._id, career: user.career, birthdate: user.birthdate };
         const token = sign(tokenPayload, process.env.SECRET_TOKEN_KEY, { expiresIn: process.env.SECRET_TOKEN_EXPIRATION_TIME });
         tokenPayload.token = token;
 
