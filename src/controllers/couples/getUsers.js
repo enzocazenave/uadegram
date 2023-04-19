@@ -16,7 +16,6 @@ const getUsers = async(req, res = response) => {
                 profileImages: profile_images,
                 about,
                 birthdate,
-                currentImage: 0,
                 isOnline
             }
         });
