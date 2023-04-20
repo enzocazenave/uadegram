@@ -15,6 +15,6 @@ router.post('/nomatch/:id', [
     check('userId', 'El identificador del usuario es obligatorio.').not().isEmpty()
 ], noMatch);
 
-router.get('/users/:gender', [], getUsers);
+router.get('/users/:id', [], getUsers);
 
 module.exports = router;

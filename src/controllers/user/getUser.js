@@ -19,7 +19,8 @@ const getUser = async(req, res = response) => {
                 name: user.name,
                 surname: user.surname,
                 email: user.email,
-                profile_image: user.profile_image
+                profile_image: user.profile_image,
+                profile_images: user.profile_images
             }
         });
     } catch(error) {

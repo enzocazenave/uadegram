@@ -2,9 +2,10 @@ const { response } = require('express');
 const catchError = require('../../helpers/catchError');
 const cloudinary = require('../../helpers/cloudinary');
 const User = require('../../models/User');
+const mongoose = require('mongoose');
 
 const addImages = async(req, res = response) => {
-    const { images = [] } = req.body;
+    const { image } = req.files;
     const { id } = req.params;
 
     try {
@@ -15,22 +16,26 @@ const addImages = async(req, res = response) => {
             msg: 'El usuario no existe.'
         });
 
-        const arrayOfImages = await Promise.all(
+        /*const arrayOfImages = await Promise.all(
             images.map(async(image) => {
-                const { secure_url } = cloudinary.uploader.upload(image, {
+                const { secure_url } = await cloudinary.uploader.upload(image, {
                     folder: 'user_images'
                 });
 
                 return secure_url;
             })
-        );
+        );*/
 
-        user.profile_images = [...user.profile_images, ...arrayOfImages];
+        const { secure_url } = await cloudinary.uploader.upload(image.tempFilePath, {
+            folder: 'user_images'
+        });
+
+        user.profile_images = [...user.profile_images, { url: secure_url, id: new mongoose.Types.ObjectId() }];
         await user.save();
 
         res.status(200).json({
             ok: true,
-            images: arrayOfImages
+            image: secure_url
         });
     } catch(error) {
         catchError(res, error);

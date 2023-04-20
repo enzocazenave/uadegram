@@ -8,11 +8,8 @@ const router = Router();
 // DEVUELVE EL USUARIO OBTENIDO MEDIANTE :id
 router.get('/:id', [], getUser);
 
-
 // SUBE IMAGENES A CLOUDINARY Y LAS GUARDA EN EL ARRAY DE FOTOS DE CADA USUARIO
-router.post('/image/:id', [
-    check('images', 'No estas queriendo subir ninguna imagen.').isArray()
-], addImages);
+router.post('/image/:id', [], addImages);
 
 // PERMITE FILLEAR CAMPOS COMO BIRTHDATE, GENDER, CAREER
 router.post('/answer/:id', [

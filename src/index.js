@@ -3,6 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const logger = require('morgan');
 const dbConnection = require('./database/config');
+const fileUpload = require('express-fileupload');
 
 dotenv.config();
 const { PORT_EXPRESS } = process.env;
@@ -13,6 +14,11 @@ dbConnection();
 
 expressServer.use(cors());
 expressServer.use(express.json());
+expressServer.use(express.urlencoded({ extended: true }));
+expressServer.use(fileUpload({
+    limits: { fileSize: 50 * 1024 * 1024 },
+    useTempFiles: true
+}))
 expressServer.use(logger('dev'));
 
 //* DECLARED ROUTES *//
