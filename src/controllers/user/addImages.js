@@ -1,8 +1,8 @@
 const { response } = require('express');
 const catchError = require('../../helpers/catchError');
-const cloudinary = require('../../helpers/cloudinary');
 const User = require('../../models/User');
 const mongoose = require('mongoose');
+const { uploadToBucket } = require('../../helpers/s3');
 
 const addImages = async(req, res = response) => {
     const { image } = req.files;
@@ -26,16 +26,14 @@ const addImages = async(req, res = response) => {
             })
         );*/
 
-        const { secure_url } = await cloudinary.uploader.upload(image.tempFilePath, {
-            folder: 'user_images'
-        });
-
-        user.profile_images = [...user.profile_images, { url: secure_url, id: new mongoose.Types.ObjectId() }];
+        const result = await uploadToBucket(image);
+    
+        user.profile_images = [...user.profile_images, { url: result.Location, id: new mongoose.Types.ObjectId() }];
         await user.save();
 
         res.status(200).json({
             ok: true,
-            image: secure_url
+            image: result.Location
         });
     } catch(error) {
         catchError(res, error);

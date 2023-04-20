@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const logger = require('morgan');
 const dbConnection = require('./database/config');
 const fileUpload = require('express-fileupload');
+const exphbs = require('express-handlebars');
 
 dotenv.config();
 const { PORT_EXPRESS } = process.env;
