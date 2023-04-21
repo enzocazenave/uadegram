@@ -16,15 +16,7 @@ const addImages = async(req, res = response) => {
             msg: 'El usuario no existe.'
         });
 
-        /*const arrayOfImages = await Promise.all(
-            images.map(async(image) => {
-                const { secure_url } = await cloudinary.uploader.upload(image, {
-                    folder: 'user_images'
-                });
-
-                return secure_url;
-            })
-        );*/
+        console.log(image);
 
         const result = await uploadToBucket(image);
     
