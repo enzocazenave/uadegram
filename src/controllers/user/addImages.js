@@ -3,8 +3,9 @@ const catchError = require('../../helpers/catchError');
 const User = require('../../models/User');
 const mongoose = require('mongoose');
 const { uploadToBucket } = require('../../helpers/s3');
+const sharp = require('sharp');
 
-const addImages = async(req, res = response) => {
+const addImages = async (req, res = response) => {
     const { image } = req.files;
     const { id } = req.params;
 
@@ -16,18 +17,22 @@ const addImages = async(req, res = response) => {
             msg: 'El usuario no existe.'
         });
 
-        console.log(image);
+        const processedImage = sharp(image.data);
+        const processedImageBuffer = await processedImage.jpeg({ quality: 50 }).toBuffer();
 
-        const result = await uploadToBucket(image);
-    
-        user.profile_images = [...user.profile_images, { url: result.Location, id: new mongoose.Types.ObjectId() }];
+        const { Location, key } = await uploadToBucket({
+            Key: image.name,
+            Body: processedImageBuffer
+        });
+
+        user.profile_images = [...user.profile_images, { url: Location, id: key.split('.jpg')[0] }];
         await user.save();
 
         res.status(200).json({
             ok: true,
-            image: result.Location
+            image: Location
         });
-    } catch(error) {
+    } catch (error) {
         catchError(res, error);
     }
 }

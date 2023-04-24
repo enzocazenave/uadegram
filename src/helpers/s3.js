@@ -16,14 +16,8 @@ const getBuckets = () => {
     return storage.listBuckets().promise();
 }
 
-const uploadToBucket = (file) => {
-    const stream = fs.createReadStream(file.tempFilePath);
-    const params = {
-        Bucket: bucket,
-        Key: file.name,
-        Body: stream
-    };
-
+const uploadToBucket = (params) => {
+    params.Bucket = bucket;
     return storage.upload(params).promise();
 }
 

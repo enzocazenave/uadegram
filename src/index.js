@@ -17,7 +17,6 @@ expressServer.use(express.json());
 expressServer.use(express.urlencoded({ extended: true }));
 expressServer.use(fileUpload({
     limits: { fileSize: 50 * 1024 * 1024 },
-    useTempFiles: true
 }));
 expressServer.use(logger('dev'));
 
