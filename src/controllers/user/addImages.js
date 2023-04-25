@@ -1,7 +1,6 @@
 const { response } = require('express');
 const catchError = require('../../helpers/catchError');
 const User = require('../../models/User');
-const mongoose = require('mongoose');
 const { uploadToBucket } = require('../../helpers/s3');
 const sharp = require('sharp');
 
@@ -25,12 +24,15 @@ const addImages = async (req, res = response) => {
             Body: processedImageBuffer
         });
 
-        user.profile_images = [...user.profile_images, { url: Location, id: key.split('.jpg')[0] }];
+        user.profile_images = [...user.profile_images, { url: Location, id: key.split('.jpg')[0], stored: false }];
         await user.save();
 
         res.status(200).json({
             ok: true,
-            image: Location
+            image: {
+                url: Location,
+                id: key.split('.jpg')[0]
+            }
         });
     } catch (error) {
         catchError(res, error);

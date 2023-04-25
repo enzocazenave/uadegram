@@ -1,5 +1,4 @@
 const S3 = require('aws-sdk/clients/s3');
-const fs = require('fs');
 
 const bucket = process.env.AWS_BUCKET;
 const region = process.env.AWS_REGION;
@@ -21,7 +20,12 @@ const uploadToBucket = (params) => {
     return storage.upload(params).promise();
 }
 
+const removeFile = (key) => {
+    return storage.deleteObject({ Key: key + '.jpg', Bucket: bucket }).promise();
+}
+
 module.exports = {
     getBuckets,
-    uploadToBucket
+    uploadToBucket,
+    removeFile
 }
