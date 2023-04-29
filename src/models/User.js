@@ -1,5 +1,20 @@
 const { model, Schema } = require('mongoose');
 
+const profileImages = new Schema({
+    url: {
+        type: String,
+        required: true
+    },
+    id: {
+        type: String,
+        required: true
+    },
+    stored: {
+        type: Boolean,
+        default: false
+    }
+})
+
 const UserSchema = Schema({
     name: {
         type: String,
@@ -21,10 +36,7 @@ const UserSchema = Schema({
         type: String,
         default: 'https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg'
     },
-    profile_images: {
-        type: Array,
-        default: []
-    },
+    profile_images: [profileImages],
     matches: {
         type: Array,
         default: []
