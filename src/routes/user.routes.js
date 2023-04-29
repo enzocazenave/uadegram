@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { getUser, addImages, answerQuestions, removeImages, storeImage } = require('../controllers/user/');
+const { getUser, addImages, answerQuestions, removeImages, storeImage, changeAbout } = require('../controllers/user/');
 //const { fieldValidator } = require('../middlewares/fieldValidator');
 
 const router = Router();
@@ -14,8 +14,11 @@ router.post('/image/:id', [], addImages);
 // REMOVER IMAGENES DE AWS Y REMOVERLAS DEL ARRAY DE FOTOS DE CADA USUARIO
 router.delete('/image/:id/:imageId', [], removeImages);
 
-// ARCHIVAR IMAGEN
+// ARCHIVAR IMAGENES
 router.patch('/image/:id/:imageId', [], storeImage);
+
+// CAMBIAR ABOUT
+router.patch('/about/:id', [], changeAbout);
 
 // PERMITE FILLEAR CAMPOS COMO BIRTHDATE, GENDER, CAREER
 router.post('/answer/:id', [

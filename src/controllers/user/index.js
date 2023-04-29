@@ -3,5 +3,6 @@ module.exports = {
     addImages: require('./addImages'),
     answerQuestions: require('./answerQuestions'),
     removeImages: require('./removeImages'),
-    storeImage: require('./storeImage')
+    storeImage: require('./storeImage'),
+    changeAbout: require('./changeAbout')
 };

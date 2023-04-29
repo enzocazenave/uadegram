@@ -13,7 +13,7 @@ const profileImages = new Schema({
         type: Boolean,
         default: false
     }
-})
+});
 
 const UserSchema = Schema({
     name: {
