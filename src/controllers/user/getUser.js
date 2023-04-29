@@ -2,7 +2,7 @@ const { response } = require('express');
 const catchError = require('../../helpers/catchError');
 const User = require('../../models/User');
 
-const getUser = async(req, res = response) => {
+const getUser = async (req, res = response) => {
     const { id } = req.params;
 
     try {
@@ -20,10 +20,11 @@ const getUser = async(req, res = response) => {
                 surname: user.surname,
                 email: user.email,
                 profile_image: user.profile_image,
-                profile_images: user.profile_images
+                profile_images: user.profile_images,
+                about: user.about
             }
         });
-    } catch(error) {
+    } catch (error) {
         catchError(res, error);
     }
 }

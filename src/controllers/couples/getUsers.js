@@ -11,10 +11,13 @@ const getUsers = async (req, res = response) => {
         const user = await User.findById(id);
 
         const refactoredUsers = users.map(({ _doc: { _id, name, profile_images, about, birthdate, isOnline } }) => {
+
+            const profileImages = profile_images.filter(image => !image.stored);
+
             return {
                 _id,
                 name,
-                profileImages: profile_images,
+                profileImages,
                 about,
                 birthdate,
                 isOnline,
