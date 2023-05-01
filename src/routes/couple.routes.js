@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { match, noMatch, getUsers } = require('../controllers/couples/');
+const { match, noMatch, getUsers, saveSettings } = require('../controllers/couples/');
 const { fieldValidator } = require('../middlewares/fieldValidator');
 
 const router = Router();
@@ -16,5 +16,8 @@ router.post('/nomatch/:id', [
 ], noMatch);
 
 router.get('/users/:id', [], getUsers);
+
+// CAMBIAR COUPLE SETTINGS
+router.patch('/settings/:id', [], saveSettings);
 
 module.exports = router;

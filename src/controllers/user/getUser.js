@@ -21,7 +21,9 @@ const getUser = async (req, res = response) => {
                 email: user.email,
                 profile_image: user.profile_image,
                 profile_images: user.profile_images,
-                about: user.about
+                about: user.about,
+                gender: user.gender,
+                genderYouSearch: user.genderYouSearch
             }
         });
     } catch (error) {

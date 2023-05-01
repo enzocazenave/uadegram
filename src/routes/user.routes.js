@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { getUser, addImages, answerQuestions, removeImages, storeImage, changeAbout } = require('../controllers/user/');
+const { getUser, addImages, answerQuestions, removeImages, storeImage, changeAbout, changeStatus } = require('../controllers/user/');
 //const { fieldValidator } = require('../middlewares/fieldValidator');
 
 const router = Router();
@@ -19,6 +19,9 @@ router.patch('/image/:id/:imageId', [], storeImage);
 
 // CAMBIAR ABOUT
 router.patch('/about/:id', [], changeAbout);
+
+// CAMBIAR STATUS
+router.patch('/isonline/:id', [], changeStatus);
 
 // PERMITE FILLEAR CAMPOS COMO BIRTHDATE, GENDER, CAREER
 router.post('/answer/:id', [

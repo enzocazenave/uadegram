@@ -57,6 +57,10 @@ const UserSchema = Schema({
         type: Number,
         default: -1
     },
+    genderYouSearch: {
+        type: Number,
+        default: -1
+    },
     career: {
         type: Number,
         default: -1

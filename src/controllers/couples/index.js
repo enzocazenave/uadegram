@@ -1,5 +1,6 @@
 module.exports = {
     match: require('./match'),
     noMatch: require('./noMatch'),
-    getUsers: require('./getUsers')
+    getUsers: require('./getUsers'),
+    saveSettings: require('./saveSettings')
 }

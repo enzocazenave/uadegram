@@ -4,5 +4,6 @@ module.exports = {
     answerQuestions: require('./answerQuestions'),
     removeImages: require('./removeImages'),
     storeImage: require('./storeImage'),
-    changeAbout: require('./changeAbout')
+    changeAbout: require('./changeAbout'),
+    changeStatus: require('./changeStatus')
 };
